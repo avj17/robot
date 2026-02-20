@@ -1,0 +1,44 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# CITY MAP – waypoints + docking stations  (30m × 30m world)
+#   Road grid:  N-S at x={-13,-10,0,10,13}   E-W at y={-13,-10,0,10,13}
+#   Robot starts at (0, -7), facing north.
+# ─────────────────────────────────────────────────────────────────────────────
+
+autonomous_docking:
+  ros__parameters:
+
+    # ── Battery policy ──────────────────────────────────────────────────────
+    battery_threshold:           30.0    # % → go dock immediately
+    battery_dock_return:         99.0    # % → leave dock and resume mission
+    battery_predictive_enabled:  true    # predictive scheduling ON
+    predictive_distance_threshold: 12.0  # m – predict if nearest dock > this
+
+    # ── Mission: A* from start to goal, stop on arrival ─────────────────────
+    start_waypoint: WP2      # robot spawn position (0, -7)
+    goal_waypoint:  WP8      # final destination  (7, 7) NE corner
+
+    # ── Waypoints (x, y in world frame; yaw in radians) ─────────────────────
+    waypoints:
+      WP1:   {x:  -7.0, y:  -7.0, yaw:  0.0}   # SW inner junction
+      WP2:   {x:   0.0, y:  -7.0, yaw:  0.0}   # S central road
+      WP3:   {x:   7.0, y:  -7.0, yaw:  0.0}   # SE inner junction
+      WP4:   {x:  -7.0, y:   0.0, yaw:  1.571} # W central road
+      WP5:   {x:   7.0, y:   0.0, yaw: -1.571} # E central road
+      WP6:   {x:  -7.0, y:   7.0, yaw:  3.141} # NW inner junction
+      WP7:   {x:   0.0, y:   7.0, yaw:  3.141} # N central road
+      WP8:   {x:   7.0, y:   7.0, yaw: -1.571} # NE inner junction
+      WP9:   {x:   0.0, y:   0.0, yaw:  0.0}   # city plaza (centre)
+      WP10:  {x:  -7.0, y:  -2.0, yaw:  1.571} # west side mid
+
+    # ── Docking Stations ─────────────────────────────────────────────────────
+    docking_stations:
+      DOCK1: {x: -11.0, y: -11.0, yaw:  0.0,   approach_distance: 0.4}  # SW corner
+      DOCK2: {x:  11.0, y: -11.0, yaw:  3.141, approach_distance: 0.4}  # SE corner
+      DOCK3: {x: -11.0, y:  11.0, yaw:  0.0,   approach_distance: 0.4}  # NW corner
+      DOCK4: {x:  11.0, y:  11.0, yaw:  3.141, approach_distance: 0.4}  # NE corner
+      DOCK5: {x: -11.0, y:   0.0, yaw:  1.571, approach_distance: 0.4}  # W mid
+      DOCK6: {x:   0.0, y:  11.0, yaw: -1.571, approach_distance: 0.4}  # N mid
+
+    # ── Robot spawn pose ────────────────────────────────────────────────────
+    robot_spawn: {x: 0.0, y: -7.0, yaw: 1.571}
+

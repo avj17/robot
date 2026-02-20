@@ -1,0 +1,15 @@
+# ROS
+build/
+devel/
+install/
+log/
+
+# Core dump
+core
+*.core
+
+# Large files
+*.bag
+*.zip
+*.tar
+*.so
